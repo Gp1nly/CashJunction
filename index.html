@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cash Junction — Earn Real Money</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080b14;
+    --bg2: #0d1120;
+    --bg3: #111827;
+    --card: #111827;
+    --card2: #161e30;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --accent: #00e5ff;
+    --accent2: #7c3aed;
+    --accent3: #f59e0b;
+    --green: #10b981;
+    --red: #ef4444;
+    --text: #f1f5f9;
+    --text2: #94a3b8;
+    --text3: #64748b;
+    --glow: rgba(0,229,255,0.15);
+    --glow2: rgba(124,58,237,0.12);
+    --radius: 18px;
+    --radius-sm: 10px;
+    --shadow: 0 4px 30px rgba(0,0,0,0.5);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ─── BACKGROUND ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 80% 10%, rgba(124,58,237,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 35% at 10% 80%, rgba(0,229,255,0.08) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(8,11,20,0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.4rem;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .logo span.accent { color: var(--accent); }
+  .logo span.dot {
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 10px var(--accent);
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%,100% { transform: scale(1); opacity:1; }
+    50% { transform: scale(1.4); opacity:0.7; }
+  }
+
+  .header-badge {
+    background: linear-gradient(135deg, rgba(0,229,255,0.15), rgba(124,58,237,0.15));
+    border: 1px solid rgba(0,229,255,0.25);
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    z-index: 1;
+    padding: 32px 20px 24px;
+    text-align: center;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0,229,255,0.08);
+    border: 1px solid rgba(0,229,255,0.2);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+    margin-bottom: 14px;
+    animation: fadeSlideDown 0.6s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin-bottom: 10px;
+    animation: fadeSlideDown 0.7s ease both;
+  }
+
+  .hero h1 .highlight {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero p {
+    color: var(--text2);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    max-width: 320px;
+    margin: 0 auto 20px;
+    animation: fadeSlideDown 0.8s ease both;
+  }
+
+  .stats-row {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    animation: fadeSlideDown 0.9s ease both;
+  }
+
+  .stat-pill {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 8px 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    min-width: 80px;
+  }
+
+  .stat-pill .val {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .stat-pill .lbl {
+    font-size: 0.68rem;
+    color: var(--text3);
+    letter-spacing: 0.3px;
+  }
+
+  /* ─── SECTION ─── */
+  .section {
+    position: relative;
+    z-index: 1;
+    padding: 0 16px 32px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    padding: 0 4px;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-title span.icon { font-size: 1.1rem; }
+
+  .count-badge {
+    background: rgba(0,229,255,0.12);
+    color: var(--accent);
+    border-radius: 8px;
+    padding: 2px 8px;
+    font-size: 0.72rem;
+    font-weight: 600;
+  }
+
+  /* ─── OFFER GRID ─── */
+  .offers-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  /* ─── OFFER CARD ─── */
+  .offer-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    animation: cardIn 0.5s ease both;
+  }
+
+  .offer-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .offer-card:active, .offer-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(0,229,255,0.25);
+    box-shadow: 0 8px 32px rgba(0,229,255,0.08);
+  }
+
+  .offer-card:hover::before { opacity: 1; }
+
+  .offer-card.featured {
+    background: linear-gradient(135deg, #111827, #16213e);
+    border-color: rgba(124,58,237,0.3);
+  }
+
+  .offer-card.featured::before { opacity: 1; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+
+  .featured-badge {
+    position: absolute;
+    top: 14px; right: 14px;
+    background: linear-gradient(135deg, var(--accent2), #a855f7);
+    color: white;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    text-transform: uppercase;
+  }
+
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+
+  .card-icon {
+    width: 46px; height: 46px;
+    background: linear-gradient(135deg, rgba(0,229,255,0.15), rgba(124,58,237,0.15));
+    border: 1px solid rgba(0,229,255,0.2);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+
+  .card-info { flex: 1; min-width: 0; }
+
+  .card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 6px;
+    color: var(--text);
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .card-badges {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 9px;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+
+  .badge.payout {
+    background: rgba(16,185,129,0.15);
+    color: var(--green);
+    border: 1px solid rgba(16,185,129,0.25);
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+
+  .badge.active {
+    background: rgba(0,229,255,0.1);
+    color: var(--accent);
+    border: 1px solid rgba(0,229,255,0.2);
+  }
+
+  .badge.active::before {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse-dot 1.5s ease-in-out infinite;
+  }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .claimed-counter {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.75rem;
+    color: var(--text2);
+    font-weight: 500;
+  }
+
+  .timer {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.72rem;
+    color: var(--accent3);
+    font-weight: 600;
+    background: rgba(245,158,11,0.08);
+    border: 1px solid rgba(245,158,11,0.15);
+    border-radius: 6px;
+    padding: 3px 8px;
+  }
+
+  .timer.urgent { color: var(--red); background: rgba(239,68,68,0.08); border-color: rgba(239,68,68,0.15); }
+  .timer.expired { color: var(--text3); background: rgba(100,116,139,0.08); border-color: rgba(100,116,139,0.15); }
+
+  .view-btn {
+    width: 100%;
+    padding: 13px;
+    background: linear-gradient(135deg, rgba(0,229,255,0.12), rgba(124,58,237,0.12));
+    border: 1px solid rgba(0,229,255,0.25);
+    border-radius: var(--radius-sm);
+    color: var(--accent);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+    letter-spacing: 0.2px;
+  }
+
+  .view-btn:active {
+    background: linear-gradient(135deg, rgba(0,229,255,0.2), rgba(124,58,237,0.2));
+    transform: scale(0.98);
+  }
+
+  /* ─── LOADING STATE ─── */
+  .skeleton-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px;
+    animation: skeleton-pulse 1.5s ease-in-out infinite;
+  }
+
+  .sk-line {
+    height: 14px;
+    background: var(--bg3);
+    border-radius: 6px;
+    margin-bottom: 10px;
+  }
+  .sk-line.short { width: 40%; }
+  .sk-line.medium { width: 65%; }
+  .sk-line.full { width: 100%; }
+
+  @keyframes skeleton-pulse {
+    0%,100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+
+  /* ─── EMPTY STATE ─── */
+  .empty-state {
+    text-align: center;
+    padding: 48px 20px;
+    color: var(--text3);
+  }
+
+  .empty-state .icon { font-size: 3rem; margin-bottom: 12px; }
+  .empty-state p { font-size: 0.9rem; }
+
+  /* ─── MODAL OVERLAY ─── */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(8px);
+    z-index: 200;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .modal-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  /* ─── BOTTOM SHEET ─── */
+  .bottom-sheet {
+    width: 100%;
+    max-width: 520px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: var(--bg2);
+    border-radius: 24px 24px 0 0;
+    padding: 0 0 32px;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+    position: relative;
+  }
+
+  .bottom-sheet::-webkit-scrollbar { display: none; }
+
+  .modal-overlay.open .bottom-sheet {
+    transform: translateY(0);
+  }
+
+  .sheet-handle {
+    width: 40px; height: 4px;
+    background: var(--border2);
+    border-radius: 2px;
+    margin: 12px auto 0;
+  }
+
+  .sheet-header {
+    padding: 20px 20px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sheet-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+
+  .sheet-badges {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .sheet-body { padding: 20px; }
+
+  .info-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .info-box {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+  }
+
+  .info-box .val {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 3px;
+  }
+
+  .info-box .lbl { font-size: 0.7rem; color: var(--text3); }
+
+  .desc-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text3);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .desc-text {
+    color: var(--text2);
+    font-size: 0.88rem;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    white-space: pre-line;
+  }
+
+  .sheet-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 20px;
+  }
+
+  .btn-primary {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border: none;
+    border-radius: var(--radius-sm);
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    letter-spacing: 0.2px;
+    box-shadow: 0 4px 20px rgba(0,229,255,0.25);
+  }
+
+  .btn-primary:active { transform: scale(0.97); }
+
+  .btn-secondary {
+    width: 100%;
+    padding: 13px;
+    background: var(--card);
+    border: 1px solid var(--border2);
+    border-radius: var(--radius-sm);
+    color: var(--text2);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+  }
+
+  .btn-secondary:active { background: var(--card2); }
+
+  /* ─── WARNING MODAL ─── */
+  .warn-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(10px);
+    z-index: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .warn-modal.open { opacity: 1; pointer-events: all; }
+
+  .warn-box {
+    background: var(--bg2);
+    border: 1px solid rgba(245,158,11,0.3);
+    border-radius: 20px;
+    padding: 28px 22px;
+    max-width: 360px;
+    width: 100%;
+    transform: scale(0.9);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .warn-modal.open .warn-box { transform: scale(1); }
+
+  .warn-icon {
+    width: 52px; height: 52px;
+    background: rgba(245,158,11,0.12);
+    border: 2px solid rgba(245,158,11,0.3);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    margin: 0 auto 16px;
+  }
+
+  .warn-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 16px;
+    color: var(--accent3);
+  }
+
+  .warn-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+
+  .warn-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: var(--text2);
+    line-height: 1.5;
+  }
+
+  .warn-list li::before {
+    content: '•';
+    color: var(--accent3);
+    font-size: 1rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .warn-actions { display: flex; flex-direction: column; gap: 10px; }
+
+  .btn-warn {
+    width: 100%;
+    padding: 13px;
+    background: linear-gradient(135deg, var(--accent3), #d97706);
+    border: none;
+    border-radius: var(--radius-sm);
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    box-shadow: 0 4px 20px rgba(245,158,11,0.25);
+  }
+
+  .btn-warn:active { transform: scale(0.97); }
+
+  .btn-cancel {
+    width: 100%;
+    padding: 11px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text3);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+  }
+
+  .btn-cancel:hover { border-color: var(--border2); color: var(--text2); }
+
+  /* ─── REDIRECT MODAL ─── */
+  .redirect-modal {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    z-index: 400;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .redirect-modal.open { opacity: 1; pointer-events: all; }
+
+  .redirect-spinner {
+    width: 60px; height: 60px;
+    border: 3px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .redirect-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-align: center;
+  }
+
+  .redirect-sub {
+    font-size: 0.85rem;
+    color: var(--text3);
+    text-align: center;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 28px 20px 20px;
+    text-align: center;
+    margin-top: 12px;
+  }
+
+  .footer-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .footer-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.2rem;
+    letter-spacing: -0.5px;
+  }
+
+  .footer-logo span { color: var(--accent); }
+
+  .footer-links {
+    display: flex;
+    gap: 18px;
+  }
+
+  .footer-links a {
+    color: var(--text3);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--text); }
+
+  .footer-socials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .social-btn {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+    font-size: 1.1rem;
+  }
+
+  .social-btn:active { transform: scale(0.9); }
+
+  .social-btn.fb { background: rgba(24,119,242,0.15); border: 1px solid rgba(24,119,242,0.25); color: #1877f2; }
+  .social-btn.wa { background: rgba(37,211,102,0.15); border: 1px solid rgba(37,211,102,0.25); color: #25d366; }
+  .social-btn.tg { background: rgba(0,136,204,0.15); border: 1px solid rgba(0,136,204,0.25); color: #0088cc; }
+  .social-btn.ig { background: rgba(225,48,108,0.15); border: 1px solid rgba(225,48,108,0.25); color: #e1306c; }
+
+  .footer-copy {
+    font-size: 0.75rem;
+    color: var(--text3);
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeSlideDown {
+    from { opacity: 0; transform: translateY(-12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── DESKTOP ADJUSTMENTS ─── */
+  @media (min-width: 640px) {
+    .hero h1 { font-size: 2.5rem; }
+    .section { padding: 0 24px 40px; }
+    .offers-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+    <span class="dot"></span>
+    Cash <span class="accent">Junction</span>
+  </div>
+  <div class="header-badge">🔥 LIVE OFFERS</div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">💰 Earn Real Cash Rewards</div>
+  <h1>Complete Offers,<br><span class="highlight">Get Paid Instantly</span></h1>
+  <p>Browse top-paying verified offers. Complete tasks and earn real money sent straight to your UPI.</p>
+  <div class="stats-row">
+    <div class="stat-pill">
+      <span class="val" id="total-offers">—</span>
+      <span class="lbl">Live Offers</span>
+    </div>
+    <div class="stat-pill">
+      <span class="val" id="total-paid">₹0</span>
+      <span class="lbl">Max Payout</span>
+    </div>
+    <div class="stat-pill">
+      <span class="val">✓ 100%</span>
+      <span class="lbl">Verified</span>
+    </div>
+  </div>
+</section>
+
+<!-- OFFERS SECTION -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-title">
+      <span class="icon">🎯</span> Active Offers
+    </div>
+    <span class="count-badge" id="count-badge">Loading...</span>
+  </div>
+  <div class="offers-grid" id="offers-grid">
+    <!-- Skeleton loaders -->
+    <div class="skeleton-card">
+      <div class="sk-line medium" style="height:18px;margin-bottom:14px"></div>
+      <div class="sk-line short"></div>
+      <div class="sk-line full" style="height:38px;margin-top:16px;border-radius:10px"></div>
+    </div>
+    <div class="skeleton-card">
+      <div class="sk-line medium" style="height:18px;margin-bottom:14px"></div>
+      <div class="sk-line short"></div>
+      <div class="sk-line full" style="height:38px;margin-top:16px;border-radius:10px"></div>
+    </div>
+    <div class="skeleton-card">
+      <div class="sk-line medium" style="height:18px;margin-bottom:14px"></div>
+      <div class="sk-line short"></div>
+      <div class="sk-line full" style="height:38px;margin-top:16px;border-radius:10px"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-logo">Cash <span>Junction</span></div>
+    <nav class="footer-links">
+      <a href="#">About</a>
+      <a href="#">Contact Us</a>
+    </nav>
+  </div>
+  <div class="footer-socials">
+    <a href="#" class="social-btn fb" title="Facebook">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+    </a>
+    <a href="#" class="social-btn wa" title="WhatsApp">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+    </a>
+    <a href="#" class="social-btn tg" title="Telegram">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+    </a>
+    <a href="#" class="social-btn ig" title="Instagram">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+    </a>
+  </div>
+  <div class="footer-copy">© 2026 Cash Junction. All Rights Reserved.</div>
+</footer>
+
+<!-- OFFER DETAIL MODAL -->
+<div class="modal-overlay" id="offer-modal" onclick="closeOfferModal(event)">
+  <div class="bottom-sheet" id="bottom-sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-header">
+      <div class="sheet-title" id="modal-title">Offer Title</div>
+      <div class="sheet-badges">
+        <span class="badge payout" id="modal-payout">₹0</span>
+        <span class="badge active" id="modal-status">Active</span>
+      </div>
+    </div>
+    <div class="sheet-body">
+      <div class="info-row">
+        <div class="info-box">
+          <div class="val" id="modal-claimed">0</div>
+          <div class="lbl">Users Claimed</div>
+        </div>
+        <div class="info-box">
+          <div class="val" id="modal-timer">—</div>
+          <div class="lbl">Time Left</div>
+        </div>
+      </div>
+      <div class="desc-label">Instructions</div>
+      <div class="desc-text" id="modal-desc">Loading...</div>
+    </div>
+    <div class="sheet-actions">
+      <button class="btn-primary" id="claim-btn" onclick="showWarning()">🚀 Claim Now</button>
+      <button class="btn-secondary" id="video-btn" onclick="openVideo()" style="display:none">📺 Watch Guide</button>
+    </div>
+  </div>
+</div>
+
+<!-- WARNING MODAL -->
+<div class="warn-modal" id="warn-modal">
+  <div class="warn-box">
+    <div class="warn-icon">⚠️</div>
+    <div class="warn-title">Important Instructions</div>
+    <ul class="warn-list">
+      <li>Use your personal mobile number &amp; device</li>
+      <li>Complete all steps in one go — don't close the app midway</li>
+      <li>Do not create multiple accounts</li>
+      <li>Use mobile data for best results (avoid Wi-Fi for cashback tracking)</li>
+    </ul>
+    <p style="font-size:0.78rem;color:var(--text3);text-align:center;margin-bottom:18px">Click <strong style="color:var(--text2)">Continue</strong> only if you agree to follow all steps</p>
+    <div class="warn-actions">
+      <button class="btn-warn" onclick="startRedirect()">✅ Continue</button>
+      <button class="btn-cancel" onclick="closeWarning()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- REDIRECT MODAL -->
+<div class="redirect-modal" id="redirect-modal">
+  <div class="redirect-spinner"></div>
+  <div class="redirect-title">🔐 Redirecting to secure partner...</div>
+  <div class="redirect-sub">Please wait 2–3 seconds</div>
+</div>
+
+<script>
+  // ─── CONFIG ───
+  // Replace with your Google Sheets ID (opensheet format)
+  const SHEET_ID = "1evvvfqhpwThFRcrwN5g67LiflsANB9goCLJE6RrYC00";
+  const SHEET_URL = `https://opensheet.elk.sh/${SHEET_ID}/Sheet1`;
+
+  // ─── STATE ───
+  let currentOffer = null;
+  let activeTimers = [];
+
+  // ─── ICONS MAP (fallback emojis by keyword) ───
+  const iconMap = [
+    { keys: ['paytm','pay'], icon: '💳' },
+    { keys: ['amazon', 'shop'], icon: '🛍️' },
+    { keys: ['phonepe', 'phone'], icon: '📱' },
+    { keys: ['google'], icon: '🔍' },
+    { keys: ['swiggy', 'food', 'zomato'], icon: '🍔' },
+    { keys: ['game', 'play'], icon: '🎮' },
+    { keys: ['loan', 'credit', 'card'], icon: '💰' },
+    { keys: ['bank', 'account'], icon: '🏦' },
+    { keys: ['insurance'], icon: '🛡️' },
+    { keys: ['demat', 'stock', 'invest'], icon: '📈' },
+    { keys: ['travel', 'flight', 'hotel'], icon: '✈️' },
+    { keys: ['health', 'medical'], icon: '🏥' },
+    { keys: ['ride', 'cab', 'ola', 'uber'], icon: '🚗' },
+    { keys: ['recharge', 'bill'], icon: '⚡' },
+  ];
+
+  function getIcon(title) {
+    const t = title.toLowerCase();
+    for (const { keys, icon } of iconMap) {
+      if (keys.some(k => t.includes(k))) return icon;
+    }
+    return '🎁';
+  }
+
+  // ─── TIMER ───
+  function getTimeLeft(expiryStr) {
+    if (!expiryStr) return { text: 'No expiry', cls: '' };
+    const expiry = new Date(expiryStr);
+    if (isNaN(expiry)) return { text: 'No expiry', cls: '' };
+    const now = new Date();
+    const diff = expiry - now;
+    if (diff <= 0) return { text: 'Expired', cls: 'expired' };
+    const days = Math.floor(diff / 86400000);
+    const hrs = Math.floor((diff % 86400000) / 3600000);
+    const mins = Math.floor((diff % 3600000) / 60000);
+    const secs = Math.floor((diff % 60000) / 1000);
+    let cls = days < 2 ? 'urgent' : '';
+    let text = days > 0 ? `${days}d ${hrs}h` : hrs > 0 ? `${hrs}h ${mins}m` : `${mins}m ${secs}s`;
+    return { text: `⏱ ${text}`, cls };
+  }
+
+  function startLiveTimer(el, expiryStr) {
+    function update() {
+      const { text, cls } = getTimeLeft(expiryStr);
+      el.textContent = text;
+      el.className = `timer ${cls}`;
+    }
+    update();
+    const id = setInterval(update, 1000);
+    activeTimers.push(id);
+    return id;
+  }
+
+  // ─── RENDER CARDS ───
+  function renderCards(offers) {
+    const grid = document.getElementById('offers-grid');
+    grid.innerHTML = '';
+    activeTimers.forEach(clearInterval);
+    activeTimers = [];
+
+    if (!offers.length) {
+      grid.innerHTML = `<div class="empty-state"><div class="icon">🔍</div><p>No active offers right now. Check back soon!</p></div>`;
+      return;
+    }
+
+    // Update stats
+    document.getElementById('total-offers').textContent = offers.length;
+    const maxPayout = Math.max(...offers.map(o => parseInt(o.payout) || 0));
+    document.getElementById('total-paid').textContent = `₹${maxPayout}`;
+    document.getElementById('count-badge').textContent = `${offers.length} active`;
+
+    offers.forEach((offer, idx) => {
+      const isFeatured = idx === 0;
+      const card = document.createElement('div');
+      card.className = `offer-card${isFeatured ? ' featured' : ''}`;
+      card.style.animationDelay = `${idx * 0.07}s`;
+
+      const { text: timerText, cls: timerCls } = getTimeLeft(offer.expiry);
+      const icon = getIcon(offer.title || '');
+
+      card.innerHTML = `
+        ${isFeatured ? '<span class="featured-badge">⭐ Featured</span>' : ''}
+        <div class="card-top">
+          <div class="card-icon">${icon}</div>
+          <div class="card-info">
+            <div class="card-title">${escHtml(offer.title || 'Untitled Offer')}</div>
+            <div class="card-badges">
+              <span class="badge payout">₹${escHtml(offer.payout || '0')}</span>
+              <span class="badge active">Active</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <div class="claimed-counter">🔥 ${escHtml(offer.claimed || '0')} users claimed</div>
+          <div class="timer ${timerCls}" data-expiry="${escHtml(offer.expiry || '')}">${timerText}</div>
+        </div>
+        <button class="view-btn">View Offer →</button>
+      `;
+
+      card.querySelector('.view-btn').addEventListener('click', () => openOfferModal(offer));
+      card.querySelector('.card-top').addEventListener('click', () => openOfferModal(offer));
+
+      // Start timer
+      const timerEl = card.querySelector('.timer');
+      startLiveTimer(timerEl, offer.expiry);
+
+      grid.appendChild(card);
+    });
+  }
+
+  // ─── FETCH OFFERS ───
+  async function fetchOffers() {
+    try {
+      const res = await fetch(SHEET_URL);
+      if (!res.ok) throw new Error('Network response was not ok');
+      const data = await res.json();
+      const active = data.filter(row => (row.status || '').toUpperCase() === 'ON');
+      renderCards(active);
+    } catch (err) {
+      console.error('Failed to fetch offers:', err);
+      // Demo data when sheet not configured
+      renderCards(getDemoOffers());
+    }
+  }
+
+  // ─── DEMO DATA (shown when sheet not configured) ───
+  function getDemoOffers() {
+    const future = new Date(Date.now() + 5 * 86400000).toISOString();
+    const urgent = new Date(Date.now() + 8 * 3600000).toISOString();
+    return [
+      { id: '1', title: 'PhonePe Install & First UPI Transaction', payout: '150', status: 'ON', link: '#', description: 'Step 1: Download PhonePe app from the link below.\nStep 2: Register with your mobile number.\nStep 3: Complete KYC verification.\nStep 4: Do your first UPI transaction of ₹1 or more.\nStep 5: Cashback credited within 24 hours.', video: 'https://youtube.com', claimed: '1,243', expiry: future, featured: true },
+      { id: '2', title: 'Amazon Pay ICICI Credit Card Apply', payout: '500', status: 'ON', link: '#', description: 'Step 1: Click Claim Now to open Amazon Pay.\nStep 2: Apply for the ICICI credit card.\nStep 3: Complete your full KYC.\nStep 4: Get approval and activate card.\nStep 5: Earn ₹500 on first transaction.', video: '', claimed: '892', expiry: urgent },
+      { id: '3', title: 'Swiggy First Order Cashback Offer', payout: '75', status: 'ON', link: '#', description: 'Step 1: Install Swiggy app.\nStep 2: Sign up with your number.\nStep 3: Order food worth ₹149 or more.\nStep 4: Cashback auto-credited to your wallet.', video: 'https://youtube.com', claimed: '3,100', expiry: future },
+      { id: '4', title: 'Paytm Money Demat Account Opening', payout: '300', status: 'ON', link: '#', description: 'Step 1: Open Paytm Money app via our link.\nStep 2: Complete your KYC with PAN & Aadhaar.\nStep 3: Open a free demat account.\nStep 4: Make your first stock investment.\nStep 5: Earn ₹300 reward.', video: '', claimed: '567', expiry: future },
+    ];
+  }
+
+  // ─── OPEN OFFER MODAL ───
+  function openOfferModal(offer) {
+    currentOffer = offer;
+    document.getElementById('modal-title').textContent = offer.title || 'Offer';
+    document.getElementById('modal-payout').textContent = `₹${offer.payout || '0'}`;
+    document.getElementById('modal-claimed').textContent = offer.claimed || '0';
+    document.getElementById('modal-desc').textContent = offer.description || 'Details not available.';
+
+    // Timer in modal
+    const timerEl = document.getElementById('modal-timer');
+    startLiveTimer(timerEl, offer.expiry);
+
+    // Video button
+    const videoBtn = document.getElementById('video-btn');
+    videoBtn.style.display = offer.video ? 'flex' : 'none';
+
+    document.getElementById('offer-modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeOfferModal(e) {
+    if (e.target === document.getElementById('offer-modal')) {
+      document.getElementById('offer-modal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+
+  // ─── WARNING MODAL ───
+  function showWarning() {
+    document.getElementById('warn-modal').classList.add('open');
+  }
+
+  function closeWarning() {
+    document.getElementById('warn-modal').classList.remove('open');
+  }
+
+  // ─── VIDEO ───
+  function openVideo() {
+    if (currentOffer?.video) window.open(currentOffer.video, '_blank');
+  }
+
+  // ─── REDIRECT FLOW ───
+  function startRedirect() {
+    closeWarning();
+    document.getElementById('offer-modal').classList.remove('open');
+    document.body.style.overflow = '';
+
+    const redirect = document.getElementById('redirect-modal');
+    redirect.classList.add('open');
+
+    // Track click (countapi)
+    if (currentOffer?.id) {
+      fetch(`https://api.countapi.xyz/hit/cashjunction/${currentOffer.id}`).catch(() => {});
+    }
+
+    setTimeout(() => {
+      redirect.classList.remove('open');
+      if (currentOffer?.link && currentOffer.link !== '#') {
+        window.open(currentOffer.link, '_blank');
+      }
+    }, 2500);
+  }
+
+  // ─── HTML ESCAPE ───
+  function escHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  // ─── INIT ───
+  document.addEventListener('DOMContentLoaded', () => {
+    fetchOffers();
+
+    // Close modal on back gesture (mobile)
+    window.addEventListener('popstate', () => {
+      document.getElementById('offer-modal').classList.remove('open');
+      document.getElementById('warn-modal').classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+</script>
+</body>
+</html>
