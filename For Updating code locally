@@ -1,0 +1,5 @@
+git add .
+git commit -m "update contact link" 
+git push
+
+for 2nd line //example its like a check point whatever changes made write down here
